@@ -6,10 +6,10 @@ on:
       - v*
   workflow_dispatch:
 
-  jobs:
-    test:
-      runs-on: ubuntu-latest
-      steps:
-      - name: Test release tag trigger
-        run: |
-          echo "Hello, World"
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Test release tag trigger
+      run: |
+        echo "Hello, World"

@@ -12,4 +12,4 @@ jobs:
     steps:
     - name: Test release tag trigger
       run: |
-        echo "Hello, World"
+        echo "github.ref_name=${{ github.ref_name }}"

@@ -12,7 +12,7 @@
     </parent>
 
     <artifactId>workflow-test</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.3</version>
 
     <name>RealLifeDeveloper GitHub Test</name>
     <description>A Maven project intended only for testing of GitHub workflows.</description>

@@ -7,7 +7,7 @@
             <vendor>openjdk</vendor>
         </provides>
         <configuration>
-            <jdkHome>${env.JAVA_21_HOME}</jdkHome>
+            <jdkHome>/usr/lib/jvm/openjdk-21</jdkHome>
         </configuration>
     </toolchain>
 </toolchains>

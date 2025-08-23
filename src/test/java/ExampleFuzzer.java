@@ -8,7 +8,7 @@ public class ExampleFuzzer {
     public static void fuzzerTestOneInput(FuzzedDataProvider dataProvider) {
         String s = dataProvider.consumeAsciiString(STRING_MAX_LENGTH);
         if (s.contains("foo")) {
-            throw new IllegalStateException("'foo' found int string: " + s);
+            throw new IllegalStateException("'foo' found in string: " + s);
         }
     }
 }

@@ -1,9 +1,11 @@
 PROJECT_NAME=workflow-test
+JAVA_VERSION=17
 
-export JAVA_HOME=${JAVA_21_HOME}
+varname=JAVA_${JAVA_VERSION}_HOME
+export JAVA_HOME=${!varname}
 export PATH=${JAVA_HOME}/bin:${PATH}
 
-mvn package dependency:copy-dependencies
+mvn clean package dependency:copy-dependencies
 
 mkdir -p ${OUT}/lib
 cp target/*.jar ${OUT}/lib

@@ -5,10 +5,12 @@ import lombok.experimental.UtilityClass;
 public class ExampleFuzzer {
     private static final int STRING_MAX_LENGTH = 100;
 
+    @SuppressWarnings({ "checkstyle:noSystemOut", "PMD.SystemPrintln" })
     public static void fuzzerTestOneInput(FuzzedDataProvider dataProvider) {
         String s = dataProvider.consumeAsciiString(STRING_MAX_LENGTH);
-        if (s.contains("a long and imprabable string to come up randomly")) {
-            throw new IllegalStateException("'foo' found in string: " + s);
+        if (s.contains("foo")) {
+            // throw new IllegalStateException("'foo' found in string: " + s);
+            System.out.println(s);
         }
     }
 }

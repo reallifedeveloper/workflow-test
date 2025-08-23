@@ -1,19 +1,20 @@
 PROJECT_NAME=workflow-test
 
-mvn package
+mvn package dependency:copy-dependencies
 
-CURRENT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-cp "target/${PROJECT_NAME}-${CURRENT_VERSION}.jar" $OUT/${PROJECT_NAME}.jar
+mkdir -p $OUT/lib
+cp target/*.jar $OUT/lib
+cp target/dependency/*.jar $OUT/lib
 
-PROJECT_JARS="${PROJECT_NAME}.jar"
+PROJECT_JARS="${PROJECT_NAME}.jar ${PROJECT_NAME}-tests.jar"
 
-BUILD_CLASSPATH=$(echo $PROJECT_JARS | xargs printf -- "$OUT/%s:"):$JAZZER_API_PATH
-RUNTIME_CLASSPATH=$(echo $PROJECT_JARS | xargs printf -- "\$this_dir/%s:"):\$this_dir
+BUILD_CLASSPATH=$(printf %s: $OUT/lib/*.jar)
+RUNTIME_CLASSPATH=$BUILD_CLASSPATH
 
 for fuzzer in $(find $SRC -name '*Fuzzer.java'); do
     fuzzer_basename=$(basename -s .java $fuzzer)
-    javac -cp $BUILD_CLASSPATH $fuzzer
-    cp $SRC/$fuzzer_basename.class $OUT/
+    javac -cp "$BUILD_CLASSPATH" $fuzzer
+    find $SRC -name ${fuzzer_basename}.class -exec cp {} $OUT/ \;
 
     # Create an execution wrapper that executes Jazzer with the correct arguments.
     echo "#!/bin/sh

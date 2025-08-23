@@ -1,20 +1,21 @@
 PROJECT_NAME=workflow-test
 
+export JAVA_HOME=${JAVA_21_HOME}
+export PATH=${JAVA_HOME}/bin:${PATH}
+
 mvn package dependency:copy-dependencies
 
-mkdir -p $OUT/lib
-cp target/*.jar $OUT/lib
-cp target/dependency/*.jar $OUT/lib
+mkdir -p ${OUT}/lib
+cp target/*.jar ${OUT}/lib
+cp target/dependency/*.jar ${OUT}/lib
 
-PROJECT_JARS="${PROJECT_NAME}.jar ${PROJECT_NAME}-tests.jar"
+BUILD_CLASSPATH=$(printf %s: ${OUT}/lib/*.jar)
+RUNTIME_CLASSPATH=${BUILD_CLASSPATH}
 
-BUILD_CLASSPATH=$(printf %s: $OUT/lib/*.jar)
-RUNTIME_CLASSPATH=$BUILD_CLASSPATH
-
-for fuzzer in $(find $SRC -name '*Fuzzer.java'); do
-    fuzzer_basename=$(basename -s .java $fuzzer)
-    javac -cp "$BUILD_CLASSPATH" $fuzzer
-    find $SRC -name ${fuzzer_basename}.class -exec cp {} $OUT/ \;
+for fuzzer in $(find ${SRC} -name '*Fuzzer.java'); do
+    fuzzer_basename=$(basename -s .java ${fuzzer})
+    javac -cp "${BUILD_CLASSPATH}" ${fuzzer}
+    find ${SRC} -name ${fuzzer_basename}.class -exec cp {} ${OUT}/ \;
 
     # Create an execution wrapper that executes Jazzer with the correct arguments.
     echo "#!/bin/sh
@@ -25,6 +26,6 @@ LD_LIBRARY_PATH=\"$JVM_LD_LIBRARY_PATH\":\$this_dir \
 --cp=$RUNTIME_CLASSPATH \
 --target_class=$fuzzer_basename \
 --jvm_args=\"-Xmx2048m:-Djava.awt.headless=true\" \
-\$@" > $OUT/$fuzzer_basename
-    chmod +x $OUT/$fuzzer_basename
+\$@" > ${OUT}/$fuzzer_basename
+    chmod +x ${OUT}/$fuzzer_basename
 done

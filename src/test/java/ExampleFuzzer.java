@@ -7,7 +7,7 @@ public class ExampleFuzzer {
 
     public static void fuzzerTestOneInput(FuzzedDataProvider dataProvider) {
         String s = dataProvider.consumeAsciiString(STRING_MAX_LENGTH);
-        if (s.contains("foo")) {
+        if (s.contains("a long and imprabable string to come up randomly")) {
             throw new IllegalStateException("'foo' found in string: " + s);
         }
     }

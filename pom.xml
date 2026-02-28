@@ -8,7 +8,7 @@
     <parent>
         <groupId>com.reallifedeveloper</groupId>
         <artifactId>rld-parent</artifactId>
-        <version>19</version>
+        <version>23</version>
     </parent>
 
     <artifactId>workflow-test</artifactId>
@@ -19,7 +19,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <rld-build-tools.version>2.0.29</rld-build-tools.version>
+        <rld-build-tools.version>2.1.1</rld-build-tools.version>
         <jazzer.version>0.25.0</jazzer.version>
     </properties>
 

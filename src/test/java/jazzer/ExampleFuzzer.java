@@ -1,3 +1,5 @@
+package jazzer;
+
 import com.code_intelligence.jazzer.api.FuzzedDataProvider;
 import lombok.experimental.UtilityClass;
 

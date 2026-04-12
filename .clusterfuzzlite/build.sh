@@ -4,6 +4,7 @@ JAVA_VERSION=21
 varname=JAVA_${JAVA_VERSION}_HOME
 export JAVA_HOME=${!varname}
 export PATH=${JAVA_HOME}/bin:${PATH}
+export JVM_LD_LIBRARY_PATH=${JAVA_HOME}/lib/server
 
 mvn clean package dependency:copy-dependencies
 

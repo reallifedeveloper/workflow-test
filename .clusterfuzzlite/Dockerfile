@@ -7,6 +7,7 @@ RUN ln -s $SRC/project-to-test/.clusterfuzzlite/toolchains.xml ~/.m2
 # RUN mvn -Dtoolchain.file=$HOME/.m2/toolchains.xml toolchains:generate-jdk-toolchains-xml
 # RUN ln -s ~/.m2/discovered-jdk-toolchains-cache.xml ~/.m2/toolchains.xml
 # ENTRYPOINT env
+ENV PATH="${JAVA_21_HOME}/bin:${PATH}"
 
 COPY . $SRC/project-to-test
 WORKDIR $SRC/project-to-test

@@ -8,7 +8,7 @@
     <parent>
         <groupId>com.reallifedeveloper</groupId>
         <artifactId>rld-parent</artifactId>
-        <version>23</version>
+        <version>26</version>
     </parent>
 
     <artifactId>workflow-test</artifactId>
@@ -18,9 +18,9 @@
     <description>A Maven project intended only for testing of GitHub workflows.</description>
 
     <properties>
-        <java.version>17</java.version>
-        <rld-build-tools.version>2.1.1</rld-build-tools.version>
-        <jazzer.version>0.25.0</jazzer.version>
+        <java.version>21</java.version>
+        <rld-build-tools.version>3.0.0</rld-build-tools.version>
+        <jazzer.version>0.30.0</jazzer.version>
     </properties>
 
     <dependencies>

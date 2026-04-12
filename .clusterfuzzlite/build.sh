@@ -1,5 +1,5 @@
 PROJECT_NAME=workflow-test
-JAVA_VERSION=17
+JAVA_VERSION=21
 
 varname=JAVA_${JAVA_VERSION}_HOME
 export JAVA_HOME=${!varname}

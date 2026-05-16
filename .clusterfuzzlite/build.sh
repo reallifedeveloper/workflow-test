@@ -24,6 +24,7 @@ for fuzzer in $(find ${SRC} -name '*Fuzzer.java'); do
 
     # Create an execution wrapper that executes Jazzer with the correct arguments.
     echo "#!/bin/sh
+update-java-alternatives --list
 # LLVMFuzzerTestOneInput for fuzzer detection.
 this_dir=\$(dirname \"\$0\")
 LD_LIBRARY_PATH=\"$JVM_LD_LIBRARY_PATH\":\$this_dir \

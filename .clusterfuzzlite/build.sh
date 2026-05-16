@@ -6,8 +6,6 @@ export JAVA_HOME=${!varname}
 export PATH=${JAVA_HOME}/bin:${PATH}
 export JVM_LD_LIBRARY_PATH=${JAVA_HOME}/lib/server
 
-update-java-alternatives --list
-
 mvn clean package dependency:copy-dependencies
 
 mkdir -p ${OUT}/lib

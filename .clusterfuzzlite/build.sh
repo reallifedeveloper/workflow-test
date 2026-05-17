@@ -15,6 +15,9 @@ cp target/dependency/*.jar ${OUT}/lib
 BUILD_CLASSPATH=$(printf %s: ${OUT}/lib/*.jar)
 RUNTIME_CLASSPATH=${BUILD_CLASSPATH}
 
+echo "===== build.sh:"
+ls -l /usr/lib/jvm
+
 for fuzzer in $(find ${SRC} -name '*Fuzzer.java'); do
     fuzzer_basename=$(basename -s .java ${fuzzer})
     javac -version
@@ -24,6 +27,7 @@ for fuzzer in $(find ${SRC} -name '*Fuzzer.java'); do
 
     # Create an execution wrapper that executes Jazzer with the correct arguments.
     echo "#!/bin/sh
+echo ===== wrapper:
 ls -l /usr/lib/jvm
 # LLVMFuzzerTestOneInput for fuzzer detection.
 this_dir=\$(dirname \"\$0\")

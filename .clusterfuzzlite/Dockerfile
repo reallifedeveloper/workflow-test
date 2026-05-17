@@ -8,6 +8,9 @@ RUN ln -s $SRC/project-to-test/.clusterfuzzlite/toolchains.xml ~/.m2
 # RUN ln -s ~/.m2/discovered-jdk-toolchains-cache.xml ~/.m2/toolchains.xml
 # ENTRYPOINT env
 
+RUN echo "===== Dockerfile:"
+RUN ls -l /usr/lib/jvm
+
 COPY . $SRC/project-to-test
 WORKDIR $SRC/project-to-test
 COPY ./.clusterfuzzlite/build.sh $SRC/
